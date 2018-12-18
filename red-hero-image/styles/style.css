@@ -12,6 +12,7 @@
   min-height: 100vh;
   width: 100vw;
   background-repeat: no-repeat;
-  background-size: cover; }
+  background-size: cover;
+  background-position: 50%; }
 
 /*# sourceMappingURL=style.css.map */

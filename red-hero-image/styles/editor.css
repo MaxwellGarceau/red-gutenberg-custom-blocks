@@ -10,13 +10,13 @@
   top: -500px;
   left: 0;
   width: 100%; }
+.wp-block-red-gutenberg-blocks-red-hero-image .hero-image-row:before {
+  display: none; }
 
 .red-hero-image__background-image.editor {
   width: 100%;
   min-height: unset;
   flex-direction: column; }
-  .red-hero-image__background-image.editor img {
-    max-height: 680px; }
 .red-hero-image__text.editor {
   text-align: center;
   width: 100%;
