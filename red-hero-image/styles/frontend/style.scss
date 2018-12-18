@@ -1,0 +1,276 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+
+// // Most used breakpoints
+// $break-huge: 1440px;
+// $break-wide: 1280px;
+// $break-large: 960px; // admin sidebar auto folds
+// $break-medium: 782px; // adminbar goes big
+// $break-small: 600px;
+// $break-mobile: 480px;
+
+// .gutenberg {
+//   .ugb-editor-label {
+//     font-size: 12px;
+//       text-transform: uppercase;
+//       font-weight: 600;
+//       font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif;
+//       color: #8e979e;
+//     padding: 2em 0 0;
+//       background: #fff;
+//       border: none;
+//       box-shadow: none;
+//       white-space: nowrap;
+//     display: block;
+//     &:first-child {
+//       padding-top: 0;
+//     }
+//   }
+// }
+// [class*="ugb-"] form[class*="-link"], form[class*="ugb-"][class*="-link"], [class*="ugb-"] + form[class*="-link"] {
+//   display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }
+
+// // Box
+// $box-radius: 12px;
+// $box-hori-padding: 35px;
+// $box-vert-padding: 60px;
+
+// /**
+//  * For blocks with a box outline, we can use the custom properties:
+//  * --box-padding-vert
+//  * --box-padding-hori
+//  * to get the current padding values
+//  */
+// @mixin box() {
+//   box-shadow: 0 5px 5px 0 rgba(18, 63, 82, 0.035), 0 0 0 1px rgba(176, 181, 193, 0.2);
+//   background-color: #fff;
+//   border-radius: $box-radius;
+//   overflow: hidden;
+//   padding: $box-vert-padding $box-hori-padding;
+//   --box-padding-vert: #{$box-vert-padding};
+//   --box-padding-hori: #{$box-hori-padding};
+//   @media screen and (max-width: $break-medium) {
+//     padding: ($box-vert-padding * 2/3) ($box-hori-padding * 2/3);
+//     --box-padding-vert: #{($box-vert-padding * 2/3)};
+//     --box-padding-hori: #{($box-hori-padding * 2/3)};
+//   }
+//   @media screen and (max-width: $break-small) {
+//     padding: $box-hori-padding ($box-hori-padding / 2);
+//     --box-padding-vert: #{$box-hori-padding};
+//     --box-padding-hori: #{($box-hori-padding / 2)};
+//   }
+// }
+
+// @mixin baseBlock() {
+//   @include blockContentReset();
+//   @include baseMargins();
+// }
+
+// @mixin baseMargins() {
+//   margin-top: 1.5em;
+//   margin-bottom: 1.5em;
+// }
+
+// @mixin blockContentReset() {
+//   > * {
+//     margin-top: 0 !important;
+//     margin-bottom: 1rem !important;
+//     &:first-child {
+//       margin-top: 0 !important;
+//     }
+//     &:last-child {
+//       margin-bottom: 0 !important;
+//     }
+//   }
+// }
+
+// @mixin baseButton() {
+//   padding-bottom: calc(0.375em - var(--s-border, 0px));
+//     padding-left: 1.25em;
+//     padding-right: 1.25em;
+//   padding-top: calc(0.375em - var(--s-border, 0px));
+//     font-size: 1em;
+//   line-height: 1.5 !important;
+//     align-items: center;
+// }
+
+// // Full-widths should be on top of each other in the editor.
+// [data-type^="ugb/"][data-align="full"] + [data-type^="ugb/"][data-align="full"] {
+//   margin-top: -32px;
+// }
+
+
+
+
+// // @import "../../common";
+
+// /**
+//  * #.# Styles for Image Box Block.
+//  *
+//  * CSS for both Frontend+Backend.
+//  */
+// .ugb-image-box-wrapper {
+//   @include baseBlock();
+//   display: grid;
+//   grid-gap: $box-hori-padding;
+//   &.columns-4 {
+//     grid-template-columns: 1fr 1fr 1fr 1fr;
+//   }
+//   &.columns-3 {
+//     grid-template-columns: 1fr 1fr 1fr;
+//   }
+//   &.columns-2 {
+//     grid-template-columns: 1fr 1fr;
+//   }
+//   &.columns-1:not(.alignwide):not(.alignfull) {
+//     grid-template-columns: 1fr;
+//     .ugb-image-box {
+//       margin: 0 auto;
+//     }
+//   }
+//   .ugb-image-box {
+//     margin: 0;
+//     > a {
+//       background-color: var(--overlay-color, #000);
+//     }
+//   }
+
+//   &.ugb-image-box-v2 {
+//     .ugb-image-box {
+//       width: 100%;
+//       margin-bottom: 0 !important; // Container class forces bottom margin.
+//     }
+//   }
+
+//   // Add side paddings to full-width > 1 columns.
+//   &.alignfull:not(.columns-1) {
+//     padding-left: $box-hori-padding;
+//     padding-right: $box-hori-padding;
+//   }
+
+//   // No border-radius for full width 1 column.
+//   &.alignfull.columns-1 {
+//     .ugb-image-box {
+//       border-radius: 0;
+//     }
+//   }
+
+//   // Collapse
+//   @media screen and (max-width: $break-large) {
+//     &.columns-4 {
+//       grid-template-columns: 1fr 1fr;
+//     }
+//   }
+//   @media screen and (max-width: $break-medium) {
+//     &.columns-3 {
+//       grid-template-columns: 1fr;
+//     }
+//   }
+//   @media screen and (max-width: $break-mobile) {
+//     &.columns-4, &.columns-2 {
+//       grid-template-columns: 1fr;
+//     }
+//   }
+// }
+// .ugb-image-box {
+//   background-size: cover;
+//   background-position: center;
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: stretch;
+//   position: relative;
+//   overflow: hidden;
+//   background-color: #999;
+//   @include baseBlock();
+//   @include box();
+//   padding: $box-hori-padding;
+//   margin-left: auto;
+//   margin-right: auto;
+//   max-width: 100%;
+//   * {
+//     transition: all .4s ease-in-out !important;
+//       border: 0 !important;
+//       box-shadow: none !important;
+//   }
+//   button.components-button {
+//     z-index: 3;
+//     margin-bottom: 1em;
+//   }
+//   a {
+//     position: absolute;
+//     z-index: 2;
+//     top: 0;
+//     left: 0;
+//     right: 0;
+//     bottom: 0;
+//     opacity: 0;
+//     margin: 0 !important;
+//     background-color: #000;
+//   }
+//   h4, p {
+//     z-index: 3;
+//     pointer-events: none;
+//   }
+//   p {
+//     margin: 0 !important;
+//     opacity: 0;
+//     transform: translateY(-15px);
+//   }
+//   &:hover a {
+//     opacity: .7;
+//   }
+//   &:hover p {
+//     opacity: 1;
+//     transform: translateY(0);
+//   }
+//   // Behavior for non-touch devices.
+//   // @media not all and (hover: none) {
+//   //  &:hover a {
+//   //    opacity: .7;
+//   //  }
+//   //  &:hover p {
+//   //    opacity: 1;
+//   //    transform: translateY(0);
+//   //  }
+//   // }
+//   // a:hover, a:active {
+//   //  opacity: .7;
+//   // }
+// }
+
+// /**
+//  * Deprecated styles < 1.5
+//  */
+// .ugb-image-box.full-width {
+//   width: 100% !important; 
+// }
+// .wp-block-ugb-image-box.has-no-content {
+//   display: none;
+// }
+
+
+
+
+
+
+.red-hero-image {
+
+  &__background-image {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+}

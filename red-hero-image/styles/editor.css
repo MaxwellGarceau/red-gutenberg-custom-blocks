@@ -1,0 +1,31 @@
+/**
+ * Note that these styles are loaded *after* common styles, so that
+ * editor-specific styles using the same selectors will take precedence.
+ */
+.wp-block {
+  max-width: 100%; }
+
+.wp-block-red-gutenberg-blocks-red-hero-image .editor-rich-text {
+  position: relative;
+  top: -500px;
+  left: 0;
+  width: 100%; }
+
+.red-hero-image__background-image.editor {
+  width: 100%;
+  min-height: unset;
+  flex-direction: column; }
+  .red-hero-image__background-image.editor img {
+    max-height: 680px; }
+.red-hero-image__text.editor {
+  text-align: center;
+  width: 100%;
+  color: #fff; }
+.red-hero-image__sub-text {
+  color: #fff;
+  width: 100%;
+  text-align: center; }
+.red-hero-image__text-editor-container {
+  position: relative; }
+
+/*# sourceMappingURL=editor.css.map */

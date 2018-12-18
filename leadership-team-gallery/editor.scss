@@ -1,0 +1,67 @@
+/**
+ * Note that these styles are loaded *after* common styles, so that
+ * editor-specific styles using the same selectors will take precedence.
+ */
+
+// Variables
+
+$border-grey: #e8e8e8;
+$information-color: #afafaf;
+
+// [placeholder]:focus::-webkit-input-placeholder {
+//   // transition: opacity 0.5s 0.5s ease; 
+//   // opacity: 0;
+//   color: $border-grey;
+// }
+
+.wp-block {
+  max-width: 100%;
+}
+
+.information-text {
+  color: $information-color;
+}
+
+.wp-block-red-gutenberg-blocks-example-02-stylesheets {
+  color: green;
+  background: #cfc;
+  border: 2px solid #9c9;
+  padding: 20px;
+}
+
+/* Gutenberg Only STyles */
+
+%gutenberg-section-container {
+  border: solid 1px $border-grey;
+  padding: 5px;
+  margin: 5px;
+}
+
+.gutenberg-editor-page {
+  .leadership-team-gallery{
+    &__description {
+      @extend %gutenberg-section-container;
+
+      &:last-child {
+        border: none;
+      }
+    }
+    &__title {
+      @extend %gutenberg-section-container;
+
+      &:last-child {
+        border: none;
+      }
+    }
+    &__name {
+      @extend %gutenberg-section-container;
+
+      &:last-child {
+        border: none;
+      }
+    }
+    &__social-media {
+      @extend %gutenberg-section-container;
+    }
+  }
+}

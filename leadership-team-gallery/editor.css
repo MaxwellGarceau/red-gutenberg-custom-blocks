@@ -1,0 +1,30 @@
+/**
+ * Note that these styles are loaded *after* common styles, so that
+ * editor-specific styles using the same selectors will take precedence.
+ */
+.wp-block {
+  max-width: 100%; }
+
+.information-text {
+  color: #afafaf; }
+
+.wp-block-red-gutenberg-blocks-example-02-stylesheets {
+  color: green;
+  background: #cfc;
+  border: 2px solid #9c9;
+  padding: 20px; }
+
+/* Gutenberg Only STyles */
+.gutenberg-editor-page .leadership-team-gallery__description, .gutenberg-editor-page .leadership-team-gallery__title, .gutenberg-editor-page .leadership-team-gallery__name, .gutenberg-editor-page .leadership-team-gallery__social-media {
+  border: solid 1px #e8e8e8;
+  padding: 5px;
+  margin: 5px; }
+
+.gutenberg-editor-page .leadership-team-gallery__description:last-child {
+  border: none; }
+.gutenberg-editor-page .leadership-team-gallery__title:last-child {
+  border: none; }
+.gutenberg-editor-page .leadership-team-gallery__name:last-child {
+  border: none; }
+
+/*# sourceMappingURL=editor.css.map */
