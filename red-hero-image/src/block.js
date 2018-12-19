@@ -7,7 +7,8 @@ const {
 	MediaUpload,
 	BlockControls,
 	AlignmentToolbar,
-	InspectorControls
+	InspectorControls,
+	InnerBlocks
 } = wp.editor;
 const { 
 	Button,
@@ -25,10 +26,7 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 			type: 'number',
 		},
 		mediaURL: {
-			type: 'string',
-			// source: 'attribute',
-			// selector: 'img',
-			// attribute: 'src',
+			type: 'string'
 		},
 		text: {
 			type: 'array',
@@ -39,16 +37,29 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 			type: 'array',
 			source: 'children',
 			selector: '.red-hero-image__sub-text',
+		},
+		textCustomClass: {
+			type: 'string',
+			// source: 'attribute',
+			// selector: '.red-hero-image__text',
+			// attribute: 'className',
+		},
+		subTextCustomClass: {
+			type: 'string',
+			// source: 'attribute',
+			// selector: '.red-hero-image__sub-text',
+			// attribute: 'className',
 		}
 	},
 	edit: ( props ) => {
 		const {
-			className,
 			attributes: {
 				mediaID,
 				mediaURL,
 				text,
-				subText
+				subText,
+				textCustomClass,
+				subTextCustomClass
 			},
 			setAttributes,
 		} = props;
@@ -59,6 +70,12 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 		const onChangeSubText = ( value ) => {
 			setAttributes( { subText: value } );
 		};
+		const onChangeTextCustomClass = ( value ) => {
+			setAttributes( { textCustomClass: value } );
+		};
+		const onChangeSubTextCustomClass = ( value ) => {
+			setAttributes( { subTextCustomClass: value } );
+		};
 		const onSelectImage = ( media ) => {
 			setAttributes( {
 				mediaURL: media.url,
@@ -67,13 +84,35 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 		};
 
 		return (
-			<div className={ `red-hero-image__background-image editor ${className}` }>
+			<div className={ `red-hero-image__background-image editor` }>
+
+        <InspectorControls>
+					<TextControl
+						format="string"
+						type="text"
+		        label="Text Custom Classs"
+		        placeholder="my-text-custom-class"
+		        value={ textCustomClass }
+		        onChange={ onChangeTextCustomClass }
+	    		/>
+					<TextControl
+						format="string"
+						type="text"
+		        label="Sub Text Custom Class"
+		        placeholder="my-sub-text-custom-class"
+		        value={ subTextCustomClass }
+		        onChange={ onChangeSubTextCustomClass }
+	    		/>
+        </InspectorControls>
+
 				<MediaUpload
 					onSelect={ onSelectImage }
 					type="image"
 					value={ mediaID }
 					render={ ( { open } ) => (
 						<div className="red-hero-image__text-editor-container">
+
+				      <InnerBlocks />
 
 							<Button className={ mediaID ? 'image-button' : 'button button-large' } onClick={ open }>
 								{ ! mediaID ? 'Upload Image' : <img src={ mediaURL } alt={ 'Upload Employee Photo' } /> }
@@ -103,12 +142,13 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 	},
 	save: ( props ) => {
 		const {
-			className,
 			attributes: {
 				mediaID,
 				mediaURL,
 				text,
-				subText
+				subText,
+				textCustomClass,
+				subTextCustomClass
 			},
 		} = props;
 		const backgroundImage = {
@@ -116,21 +156,23 @@ registerBlockType( 'red-gutenberg-blocks/red-hero-image', {
 		};
 		return (
 			<div
-				className={ `red-hero-image__background-image ${ className }` }
+				className={ `red-hero-image__background-image` }
 				style={ backgroundImage }
 			>
 
 				<RichText.Content
 					tagName="h2"
 					value={ text }
-					className="red-hero-image__text hero-image-row__title"
+					className={`red-hero-image__text hero-image-row__title ${ textCustomClass }`}
 				/>
 
 				<RichText.Content 
 					tagName="h3"
 					value={ subText }
-					className="red-hero-image__sub-text"
+					className={`red-hero-image__sub-text ${ subTextCustomClass }`}
 				/>
+
+				<InnerBlocks.Content />
 
 			</div>
 		);

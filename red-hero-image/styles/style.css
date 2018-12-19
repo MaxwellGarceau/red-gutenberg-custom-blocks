@@ -4,6 +4,9 @@
  * Can include things like variables and mixins
  * that are used across the project.
 */
+.wp-block-red-gutenberg-blocks-red-hero-image {
+  padding: 15px; }
+
 .red-hero-image__background-image {
   display: flex;
   position: relative;

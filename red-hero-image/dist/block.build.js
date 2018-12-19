@@ -7,7 +7,8 @@ var _wp$editor = wp.editor,
     MediaUpload = _wp$editor.MediaUpload,
     BlockControls = _wp$editor.BlockControls,
     AlignmentToolbar = _wp$editor.AlignmentToolbar,
-    InspectorControls = _wp$editor.InspectorControls;
+    InspectorControls = _wp$editor.InspectorControls,
+    InnerBlocks = _wp$editor.InnerBlocks;
 var _wp$components = wp.components,
     Button = _wp$components.Button,
     TextControl = _wp$components.TextControl;
@@ -24,9 +25,6 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
     },
     mediaURL: {
       type: 'string'
-      // source: 'attribute',
-      // selector: 'img',
-      // attribute: 'src',
     },
     text: {
       type: 'array',
@@ -37,15 +35,28 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
       type: 'array',
       source: 'children',
       selector: '.red-hero-image__sub-text'
+    },
+    textCustomClass: {
+      type: 'string'
+      // source: 'attribute',
+      // selector: '.red-hero-image__text',
+      // attribute: 'className',
+    },
+    subTextCustomClass: {
+      type: 'string'
+      // source: 'attribute',
+      // selector: '.red-hero-image__sub-text',
+      // attribute: 'className',
     }
   },
   edit: function edit(props) {
-    var className = props.className,
-        _props$attributes = props.attributes,
+    var _props$attributes = props.attributes,
         mediaID = _props$attributes.mediaID,
         mediaURL = _props$attributes.mediaURL,
         text = _props$attributes.text,
         subText = _props$attributes.subText,
+        textCustomClass = _props$attributes.textCustomClass,
+        subTextCustomClass = _props$attributes.subTextCustomClass,
         setAttributes = props.setAttributes;
 
 
@@ -54,6 +65,12 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
     };
     var onChangeSubText = function onChangeSubText(value) {
       setAttributes({ subText: value });
+    };
+    var onChangeTextCustomClass = function onChangeTextCustomClass(value) {
+      setAttributes({ textCustomClass: value });
+    };
+    var onChangeSubTextCustomClass = function onChangeSubTextCustomClass(value) {
+      setAttributes({ subTextCustomClass: value });
     };
     var onSelectImage = function onSelectImage(media) {
       setAttributes({
@@ -64,7 +81,27 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
 
     return React.createElement(
       'div',
-      { className: 'red-hero-image__background-image editor ' + className },
+      { className: 'red-hero-image__background-image editor' },
+      React.createElement(
+        InspectorControls,
+        null,
+        React.createElement(TextControl, {
+          format: 'string',
+          type: 'text',
+          label: 'Text Custom Classs',
+          placeholder: 'my-text-custom-class',
+          value: textCustomClass,
+          onChange: onChangeTextCustomClass
+        }),
+        React.createElement(TextControl, {
+          format: 'string',
+          type: 'text',
+          label: 'Sub Text Custom Class',
+          placeholder: 'my-sub-text-custom-class',
+          value: subTextCustomClass,
+          onChange: onChangeSubTextCustomClass
+        })
+      ),
       React.createElement(MediaUpload, {
         onSelect: onSelectImage,
         type: 'image',
@@ -74,6 +111,7 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
           return React.createElement(
             'div',
             { className: 'red-hero-image__text-editor-container' },
+            React.createElement(InnerBlocks, null),
             React.createElement(
               Button,
               { className: mediaID ? 'image-button' : 'button button-large', onClick: open },
@@ -99,12 +137,13 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
     );
   },
   save: function save(props) {
-    var className = props.className,
-        _props$attributes2 = props.attributes,
+    var _props$attributes2 = props.attributes,
         mediaID = _props$attributes2.mediaID,
         mediaURL = _props$attributes2.mediaURL,
         text = _props$attributes2.text,
-        subText = _props$attributes2.subText;
+        subText = _props$attributes2.subText,
+        textCustomClass = _props$attributes2.textCustomClass,
+        subTextCustomClass = _props$attributes2.subTextCustomClass;
 
     var backgroundImage = {
       backgroundImage: 'url(\'' + mediaURL + '\')'
@@ -112,19 +151,20 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
     return React.createElement(
       'div',
       {
-        className: 'red-hero-image__background-image ' + className,
+        className: 'red-hero-image__background-image',
         style: backgroundImage
       },
       React.createElement(RichText.Content, {
         tagName: 'h2',
         value: text,
-        className: 'red-hero-image__text hero-image-row__title'
+        className: 'red-hero-image__text hero-image-row__title ' + textCustomClass
       }),
       React.createElement(RichText.Content, {
         tagName: 'h3',
         value: subText,
-        className: 'red-hero-image__sub-text'
-      })
+        className: 'red-hero-image__sub-text ' + subTextCustomClass
+      }),
+      React.createElement(InnerBlocks.Content, null)
     );
   }
 });

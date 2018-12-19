@@ -5,14 +5,20 @@
 .wp-block {
   max-width: 100%; }
 
-.wp-block-red-gutenberg-blocks-red-hero-image .editor-rich-text {
+.red-hero-image__background-image.editor .editor-rich-text {
   position: relative;
   top: -500px;
   left: 0;
   width: 100%; }
-.wp-block-red-gutenberg-blocks-red-hero-image .hero-image-row:before {
+.red-hero-image__background-image.editor .editor-inner-blocks .editor-rich-text {
+  top: unset;
+  left: unset;
+  width: unset; }
+.red-hero-image__background-image.editor.hero-image-row:before {
   display: none; }
 
+.red-hero-image .wp-block-kadence-rowlayout > .innerblocks-wrap {
+  width: 100%; }
 .red-hero-image__background-image.editor {
   width: 100%;
   min-height: unset;
