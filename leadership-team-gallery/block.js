@@ -16,51 +16,54 @@ const {
 
 // setLocaleData( window.leadership_team_gallery.localeData, 'red-gutenberg-blocks' );
 
+// Block Attributes
+const blockAttributes = {
+	mediaID: {
+		type: 'number',
+	},
+	mediaURL: {
+		type: 'string',
+		source: 'attribute',
+		selector: 'img',
+		attribute: 'src',
+	},
+	name: {
+		type: 'array',
+		source: 'children',
+		selector: '.leadership-team-gallery__name',
+	},
+	title: {
+		type: 'array',
+		source: 'children',
+		selector: '.leadership-team-gallery__title',
+	},
+	description: {
+		type: 'array',
+		source: 'children',
+		selector: '.leadership-team-gallery__description',
+	},
+	facebookURL: {
+		source: 'attribute',
+		attribute: 'href',
+		selector: 'a',
+	},
+	twitterURL: {
+		source: 'attribute',
+		attribute: 'href',
+		selector: 'a',
+	},
+	pinterestURL: {
+		source: 'attribute',
+		attribute: 'href',
+		selector: 'a',
+	},
+};
+
 registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 	title: 'Leadership Team Gallery Block',
 	icon: 'index-card',
 	category: 'layout',
-	attributes: {
-		mediaID: {
-			type: 'number',
-		},
-		mediaURL: {
-			type: 'string',
-			source: 'attribute',
-			selector: 'img',
-			attribute: 'src',
-		},
-		name: {
-			type: 'array',
-			source: 'children',
-			selector: '.leadership-team-gallery__name',
-		},
-		title: {
-			type: 'array',
-			source: 'children',
-			selector: '.leadership-team-gallery__title',
-		},
-		description: {
-			type: 'array',
-			source: 'children',
-			selector: '.leadership-team-gallery__description',
-		},
-		facebookURL: {
-			source: 'attribute',
-			attribute: 'href',
-			selector: 'a',
-		},
-		twitterURL: {
-			source: 'attribute',
-			attribute: 'href',
-			selector: 'a',
-		},
-		pinterestURL: {
-			source: 'attribute',
-			attribute: 'href',
-			selector: 'a',
-		},
-	},
+	attributes: blockAttributes,
 	edit: ( props ) => {
 		const {
 			className,
@@ -70,9 +73,9 @@ registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 				mediaID,
 				mediaURL,
 				description,
-				facebookURL,
-				twitterURL,
-				pinterestURL
+				// facebookURL,
+				// twitterURL,
+				// pinterestURL
 			},
 			setAttributes,
 		} = props;
@@ -92,50 +95,50 @@ registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 				mediaID: media.id,
 			} );
 		};
-		const onChangeFacebookURL = ( url ) => {
-			setAttributes( {
-				facebookURL: url
-			} );
-		};
-		const onChangeTwitterURL = ( url ) => {
-			setAttributes( {
-				twitterURL: url
-			} );
-		};
-		const onChangePinterestURL = ( url ) => {
-			setAttributes( {
-				pinterestURL: url
-			} );
-		};
+		// const onChangeFacebookURL = ( url ) => {
+		// 	setAttributes( {
+		// 		facebookURL: url
+		// 	} );
+		// };
+		// const onChangeTwitterURL = ( url ) => {
+		// 	setAttributes( {
+		// 		twitterURL: url
+		// 	} );
+		// };
+		// const onChangePinterestURL = ( url ) => {
+		// 	setAttributes( {
+		// 		pinterestURL: url
+		// 	} );
+		// };
 
 		return (
 			<div className={ `leadership-team-gallery__block ${className}` }>
-        <InspectorControls>
-					<TextControl
-						format="string"
-						type="text"
-		        label="Facebook URL (Must include full url)"
-		        placeholder="https://www.facebook.com"
-		        value={ facebookURL }
-		        onChange={ onChangeFacebookURL }
-	    		/>
-					<TextControl
-						format="string"
-						type="text"
-		        label="Twitter URL (Must include full url)"
-		        placeholder="https://www.twitter.com"
-		        value={ twitterURL }
-		        onChange={ onChangeTwitterURL }
-	    		/>
-					<TextControl
-						format="string"
-						type="text"
-		        label="Pinterest URL (Must include full url)"
-		        placeholder="https://www.pinterest.com"
-		        value={ pinterestURL }
-		        onChange={ onChangePinterestURL }
-	    		/>
-        </InspectorControls>
+        {/*<InspectorControls>
+						<TextControl
+							format="string"
+							type="text"
+			        label="Facebook URL (Must include full url)"
+			        placeholder="https://www.facebook.com"
+			        value={ facebookURL }
+			        onChange={ onChangeFacebookURL }
+		    		/>
+						<TextControl
+							format="string"
+							type="text"
+			        label="Twitter URL (Must include full url)"
+			        placeholder="https://www.twitter.com"
+			        value={ twitterURL }
+			        onChange={ onChangeTwitterURL }
+		    		/>
+						<TextControl
+							format="string"
+							type="text"
+			        label="Pinterest URL (Must include full url)"
+			        placeholder="https://www.pinterest.com"
+			        value={ pinterestURL }
+			        onChange={ onChangePinterestURL }
+		    		/>
+	        </InspectorControls>*/}
 				<MediaUpload
 					onSelect={ onSelectImage }
 					type="image"
@@ -167,7 +170,7 @@ registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 					onChange={ onChangeDescription }
 					className="leadership-team-gallery__description"
 				/>
-				<p className="information-text">*Set social media links in the sidebar</p>
+				{/*<p className="information-text">*Set social media links in the sidebar</p>*/}
 			</div>
 		);
 	},
@@ -179,9 +182,9 @@ registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 				title,
 				mediaURL,
 				description,
-				facebookURL,
-				twitterURL,
-				pinterestURL
+				// facebookURL,
+				// twitterURL,
+				// pinterestURL
 			},
 		} = props;
 		return (
@@ -216,13 +219,73 @@ registerBlockType( 'red-gutenberg-blocks/leadership-team-gallery', {
 					className="leadership-team-gallery__description"
 				/>
 
-	  	  <div class="leadership-team-gallery__social-media">
-	  	    <a target="_blank" href={ facebookURL }><i class="fab fa-facebook-f"></i></a>
-	  	    <a target="_blank" href={ twitterURL }><i class="fab fa-twitter"></i></a>
-	  	    <a target="_blank" href={ pinterestURL }><i class="fab fa-pinterest"></i></a>
-	  	  </div>
+	  	  {/*<div class="leadership-team-gallery__social-media">
+  	  	    <a target="_blank" href={ facebookURL }><i class="fab fa-facebook-f"></i></a>
+  	  	    <a target="_blank" href={ twitterURL }><i class="fab fa-twitter"></i></a>
+  	  	    <a target="_blank" href={ pinterestURL }><i class="fab fa-pinterest"></i></a>
+  	  	  </div>*/}
 
 			</div>
 		);
 	},
+  deprecated: [
+	  {
+      attributes: blockAttributes,
+
+			save: ( props ) => {
+				const {
+					className,
+					attributes: {
+						name,
+						title,
+						mediaURL,
+						description,
+						facebookURL,
+						twitterURL,
+						pinterestURL
+					},
+				} = props;
+				return (
+					<div
+						className={ `leadership-team-gallery__block ${className}` }
+					>
+
+						{
+							mediaURL && (
+								<img
+									src={ mediaURL }
+									alt={ 'Employee Image' } 
+								/>
+							)
+						}
+
+						<RichText.Content
+							tagName="div"
+							value={ name }
+							className="leadership-team-gallery__name"
+						/>
+
+						<RichText.Content 
+							tagName="div"
+							value={ title }
+							className="leadership-team-gallery__title"
+						/>
+
+						<RichText.Content 
+							tagName="div"
+							value={ description }
+							className="leadership-team-gallery__description"
+						/>
+
+			  	  <div class="leadership-team-gallery__social-media">
+			  	    <a target="_blank" href={ facebookURL }><i class="fab fa-facebook-f"></i></a>
+			  	    <a target="_blank" href={ twitterURL }><i class="fab fa-twitter"></i></a>
+			  	    <a target="_blank" href={ pinterestURL }><i class="fab fa-pinterest"></i></a>
+			  	  </div>
+
+					</div>
+				);
+			},
+	  }
+  ]
 } );

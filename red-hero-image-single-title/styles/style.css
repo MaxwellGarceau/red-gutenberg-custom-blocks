@@ -1,0 +1,21 @@
+/**
+ * #.# Common SCSS
+ *
+ * Can include things like variables and mixins
+ * that are used across the project.
+*/
+.wp-block-red-gutenberg-blocks-red-hero-image-single-title {
+  padding: 15px; }
+
+.red-hero-image-single-title__background-image {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%; }
+
+/*# sourceMappingURL=style.css.map */

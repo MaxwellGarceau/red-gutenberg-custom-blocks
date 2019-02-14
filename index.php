@@ -12,3 +12,4 @@ defined( 'ABSPATH' ) || exit;
 
 include 'leadership-team-gallery/index.php';
 include 'red-hero-image/index.php';
+include 'red-hero-image-single-title/index.php';

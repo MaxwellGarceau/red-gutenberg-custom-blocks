@@ -13,8 +13,8 @@ var _wp$components = wp.components,
     Button = _wp$components.Button,
     TextControl = _wp$components.TextControl; // setLocaleData( window.leadership_team_gallery.localeData, 'red-gutenberg-blocks' );
 
-registerBlockType('red-gutenberg-blocks/red-hero-image', {
-  title: 'Red Hero Image',
+registerBlockType('red-gutenberg-blocks/red-hero-image-single-title', {
+  title: 'Red Hero Image (Single Title)',
   icon: 'index-card',
   category: 'layout',
   attributes: {
@@ -29,20 +29,9 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
       source: 'children',
       selector: '.red-hero-image__text'
     },
-    subText: {
-      type: 'array',
-      source: 'children',
-      selector: '.red-hero-image__sub-text'
-    },
     textCustomClass: {
       type: 'string' // source: 'attribute',
       // selector: '.red-hero-image__text',
-      // attribute: 'className',
-
-    },
-    subTextCustomClass: {
-      type: 'string' // source: 'attribute',
-      // selector: '.red-hero-image__sub-text',
       // attribute: 'className',
 
     }
@@ -52,9 +41,7 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
         mediaID = _props$attributes.mediaID,
         mediaURL = _props$attributes.mediaURL,
         text = _props$attributes.text,
-        subText = _props$attributes.subText,
         textCustomClass = _props$attributes.textCustomClass,
-        subTextCustomClass = _props$attributes.subTextCustomClass,
         setAttributes = props.setAttributes;
 
     var onChangeText = function onChangeText(value) {
@@ -63,21 +50,9 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
       });
     };
 
-    var onChangeSubText = function onChangeSubText(value) {
-      setAttributes({
-        subText: value
-      });
-    };
-
     var onChangeTextCustomClass = function onChangeTextCustomClass(value) {
       setAttributes({
         textCustomClass: value
-      });
-    };
-
-    var onChangeSubTextCustomClass = function onChangeSubTextCustomClass(value) {
-      setAttributes({
-        subTextCustomClass: value
       });
     };
 
@@ -97,13 +72,6 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
       placeholder: "my-text-custom-class",
       value: textCustomClass,
       onChange: onChangeTextCustomClass
-    }), React.createElement(TextControl, {
-      format: "string",
-      type: "text",
-      label: "Sub Text Custom Class",
-      placeholder: "my-sub-text-custom-class",
-      value: subTextCustomClass,
-      onChange: onChangeSubTextCustomClass
     })), React.createElement(MediaUpload, {
       onSelect: onSelectImage,
       type: "image",
@@ -124,12 +92,6 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
           value: text,
           onChange: onChangeText,
           className: "red-hero-image__text editor"
-        }), React.createElement(RichText, {
-          tagName: "h3",
-          placeholder: 'Sub Text',
-          value: subText,
-          onChange: onChangeSubText,
-          className: "red-hero-image__sub-text editor"
         }));
       }
     }));
@@ -139,23 +101,18 @@ registerBlockType('red-gutenberg-blocks/red-hero-image', {
         mediaID = _props$attributes2.mediaID,
         mediaURL = _props$attributes2.mediaURL,
         text = _props$attributes2.text,
-        subText = _props$attributes2.subText,
-        textCustomClass = _props$attributes2.textCustomClass,
-        subTextCustomClass = _props$attributes2.subTextCustomClass;
+        textCustomClass = _props$attributes2.textCustomClass;
     var backgroundImage = {
       backgroundImage: "url('".concat(mediaURL, "')")
     };
+    var textCustomClassValidated = textCustomClass ? "".concat(' ' + textCustomClass) : '';
     return React.createElement("div", {
       className: "red-hero-image__background-image",
       style: backgroundImage
     }, React.createElement(RichText.Content, {
       tagName: "h2",
       value: text,
-      className: "red-hero-image__text hero-image-row__title ".concat(textCustomClass)
-    }), React.createElement(RichText.Content, {
-      tagName: "h3",
-      value: subText,
-      className: "red-hero-image__sub-text ".concat(subTextCustomClass)
+      className: "red-hero-image__text hero-image-row__title".concat(textCustomClassValidated)
     }), React.createElement(InnerBlocks.Content, null));
   }
 });

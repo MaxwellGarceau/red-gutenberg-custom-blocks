@@ -1,0 +1,82 @@
+/**
+ * Note that these styles are loaded *after* common styles, so that
+ * editor-specific styles using the same selectors will take precedence.
+ */
+
+// Variables
+
+$border-grey: #e8e8e8;
+$information-color: #afafaf;
+
+// [placeholder]:focus::-webkit-input-placeholder {
+//   // transition: opacity 0.5s 0.5s ease;
+//   // opacity: 0;
+//   color: $border-grey;
+// }
+
+.wp-block {
+  max-width: 100%;
+}
+
+.red-hero-image-single-title__background-image.editor {
+  .editor-rich-text {
+    // position: absolute;
+    position: relative;
+    top: -500px;
+    left: 0;
+    width: 100%;
+    // height: 100%;
+  }
+
+  .editor-inner-blocks .editor-rich-text {
+    top: unset;
+    left: unset;
+    width: unset;
+  }
+
+  &.hero-image-row:before {
+    display: none;
+  }
+}
+
+.red-hero-image-single-title {
+
+  .wp-block-kadence-rowlayout>.innerblocks-wrap {
+    width: 100%;
+  }
+
+  &__background-image.editor {
+    // display: block;
+    width: 100%;
+    // height: 700px;
+    min-height: unset;
+    flex-direction: column;
+
+    img {
+      // max-height: 680px;
+    }
+  }
+
+  &__text.editor {
+    // position: relative;
+    // top: 200px;
+    // left: 0;
+    text-align: center;
+    width: 100%;
+    color: #fff;
+  }
+  &__sub-text {
+    color: #fff;
+    // top: 525px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__text-editor-container {
+    position: relative;
+
+    button {
+      // position: absolute;
+    }
+  }
+}
